@@ -121,6 +121,8 @@
   flex-direction: column;
   cursor: pointer;
   gap: 4px;
+  z-index: 1001;
+  position: relative;
 }
 
 .mobileMenuBtn span {
@@ -129,6 +131,19 @@
   background: var(--text-primary);
   border-radius: 2px;
   transition: all 0.3s ease;
+}
+
+/* Mobile menu button animation */
+.mobileMenuBtnOpen span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.mobileMenuBtnOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobileMenuBtnOpen span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* Hero Section */
@@ -636,35 +651,148 @@
 }
 
 /* Certificates */
-.certificatesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+.certificateCarousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.certificateCard {
-  background: var(--bg-primary);
+.carouselBtn {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  position: relative;
+  box-shadow: var(--shadow-md);
+}
+
+.carouselBtn:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+.prevBtn {
+  margin-right: 2rem;
+}
+
+.nextBtn {
+  margin-left: 2rem;
+}
+
+.certificateContainer {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.certificateSlide {
+  position: absolute;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-  transition: transform 0.3s ease;
-  text-align: center;
+  box-shadow: var(--shadow-lg);
 }
 
-.certificateCard:hover {
-  transform: translateY(-5px);
+.certificateSlide.active {
+  transform: translateX(0) scale(1);
+  z-index: 3;
+  opacity: 1;
+}
+
+.certificateSlide.prev {
+  transform: translateX(-120px) scale(0.8);
+  z-index: 2;
+  opacity: 0.6;
+  filter: brightness(0.7);
+}
+
+.certificateSlide.next {
+  transform: translateX(120px) scale(0.8);
+  z-index: 2;
+  opacity: 0.6;
+  filter: brightness(0.7);
+}
+
+.certificateImageContainer {
+  background: var(--bg-primary);
+  padding: 1rem;
+  border-radius: 15px;
 }
 
 .certificateImage {
-  width: 100%;
-  height: 200px;
+  width: 350px;
+  height: 250px;
   object-fit: cover;
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
-.certificateCard h4 {
+.certificateSlide.active .certificateImage {
+  width: 400px;
+  height: 300px;
+}
+
+.certificateSlide.prev .certificateImage,
+.certificateSlide.next .certificateImage {
+  width: 280px;
+  height: 200px;
+}
+
+.certificateTitle {
+  text-align: center;
   padding: 1rem;
   color: var(--text-primary);
   font-weight: 600;
+  font-size: 1.1rem;
+  background: var(--bg-primary);
+  margin: 0;
+}
+
+.certificateSlide.active .certificateTitle {
+  font-size: 1.2rem;
+}
+
+.certificateSlide.prev .certificateTitle,
+.certificateSlide.next .certificateTitle {
+  font-size: 0.9rem;
+  padding: 0.75rem;
+}
+
+.certificateIndicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: var(--border-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.activeIndicator {
+  background: var(--gradient-primary);
+  transform: scale(1.2);
 }
 
 /* Contact Section */
@@ -768,7 +896,54 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .navList {
-    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 2rem;
+    gap: 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .navListOpen {
+    transform: translateX(0);
+  }
+  
+  .navList li {
+    opacity: 0;
+    animation: fadeInUp 0.3s ease forwards;
+  }
+  
+  .navListOpen li:nth-child(1) { animation-delay: 0.1s; }
+  .navListOpen li:nth-child(2) { animation-delay: 0.2s; }
+  .navListOpen li:nth-child(3) { animation-delay: 0.3s; }
+  .navListOpen li:nth-child(4) { animation-delay: 0.4s; }
+  .navListOpen li:nth-child(5) { animation-delay: 0.5s; }
+  .navListOpen li:nth-child(6) { animation-delay: 0.6s; }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+  
+  .navLink {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
   }
   
   .mobileMenuBtn {
@@ -833,6 +1008,52 @@
     font-size: 0.8rem;
   }
   
+  .certificateCarousel {
+    padding: 1rem 0;
+  }
+  
+  .carouselBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  
+  .prevBtn {
+    margin-right: 1rem;
+  }
+  
+  .nextBtn {
+    margin-left: 1rem;
+  }
+  
+  .certificateContainer {
+    height: 300px;
+  }
+  
+  .certificateImage {
+    width: 250px !important;
+    height: 180px !important;
+  }
+  
+  .certificateSlide.active .certificateImage {
+    width: 280px !important;
+    height: 200px !important;
+  }
+  
+  .certificateSlide.prev .certificateImage,
+  .certificateSlide.next .certificateImage {
+    width: 200px !important;
+    height: 150px !important;
+  }
+  
+  .certificateSlide.prev {
+    transform: translateX(-80px) scale(0.7);
+  }
+  
+  .certificateSlide.next {
+    transform: translateX(80px) scale(0.7);
+  }
+
   .contactContent {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -870,5 +1091,107 @@
   .primaryBtn, .secondaryBtn {
     width: 100%;
     text-align: center;
+  }
+}
+
+/* Scroll Animations */
+.scrollAnimation {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scrollAnimation.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animations for child elements */
+.scrollAnimation.animate .sectionHeader {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.scrollAnimation.animate .aboutContent {
+  animation: fadeInUp 0.8s ease 0.2s forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.scrollAnimation.animate .skillsGrid > * {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.scrollAnimation.animate .skillsGrid > *:nth-child(1) { animation-delay: 0.1s; }
+.scrollAnimation.animate .skillsGrid > *:nth-child(2) { animation-delay: 0.2s; }
+.scrollAnimation.animate .skillsGrid > *:nth-child(3) { animation-delay: 0.3s; }
+
+.scrollAnimation.animate .projectsGrid > * {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.scrollAnimation.animate .projectsGrid > *:nth-child(1) { animation-delay: 0.1s; }
+.scrollAnimation.animate .projectsGrid > *:nth-child(2) { animation-delay: 0.2s; }
+.scrollAnimation.animate .projectsGrid > *:nth-child(3) { animation-delay: 0.3s; }
+
+.scrollAnimation.animate .timelineItem {
+  animation: fadeInLeft 0.8s ease forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.scrollAnimation.animate .timelineItem:nth-child(1) { animation-delay: 0.1s; }
+.scrollAnimation.animate .timelineItem:nth-child(2) { animation-delay: 0.2s; }
+.scrollAnimation.animate .timelineItem:nth-child(3) { animation-delay: 0.3s; }
+.scrollAnimation.animate .timelineItem:nth-child(4) { animation-delay: 0.4s; }
+.scrollAnimation.animate .timelineItem:nth-child(5) { animation-delay: 0.5s; }
+.scrollAnimation.animate .timelineItem:nth-child(6) { animation-delay: 0.6s; }
+.scrollAnimation.animate .timelineItem:nth-child(7) { animation-delay: 0.7s; }
+
+.scrollAnimation.animate .certificateCarousel {
+  animation: fadeInUp 0.8s ease 0.2s forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.scrollAnimation.animate .contactContent {
+  animation: fadeInUp 0.8s ease 0.2s forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

@@ -1,45 +1,11 @@
 "use client";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 
 export default function Home() {
   const [currentCertificate, setCurrentCertificate] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
-  // Refs for scroll animation
-  const aboutRef = useRef(null);
-  const skillsRef = useRef(null);
-  const projectsRef = useRef(null);
-  const experienceRef = useRef(null);
-  const certificatesRef = useRef(null);
-  const contactRef = useRef(null);
-
-  // Intersection Observer for scroll animations
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add(styles.animate);
-        }
-      });
-    }, observerOptions);
-
-    // Observe all sections
-    const sections = [aboutRef, skillsRef, projectsRef, experienceRef, certificatesRef, contactRef];
-    sections.forEach((ref) => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
-
-    return () => observer.disconnect();
-  }, []);
   
   const certificates = [
     {
@@ -94,15 +60,14 @@ export default function Home() {
     setIsMobileMenuOpen(false);
   };
   return (
-   
-    <div className={styles.container}>
-
+    <div className={styles.pageWrapper}>
+      {/* Navigation */}
       <nav className={styles.nav}>
         <div className={styles.navContainer}>
           <div className={styles.logo}>
-            <span className={styles.logoText}>AK</span>
+            <span className={styles.logoText}>MA</span>
           </div>
-          <ul className={`${styles.navList} ${isMobileMenuOpen ? styles.navListOpen : ''}`}>
+          <ul className={isMobileMenuOpen ? `${styles.navList} ${styles.navListOpen}` : styles.navList}>
             <li><a href="#hero" className={styles.navLink} onClick={closeMobileMenu}>Home</a></li>
             <li><a href="#about" className={styles.navLink} onClick={closeMobileMenu}>About</a></li>
             <li><a href="#skills" className={styles.navLink} onClick={closeMobileMenu}>Skills</a></li>
@@ -111,7 +76,7 @@ export default function Home() {
             <li><a href="#contact" className={styles.navLink} onClick={closeMobileMenu}>Contact</a></li>
           </ul>
           <div 
-            className={`${styles.mobileMenuBtn} ${isMobileMenuOpen ? styles.mobileMenuBtnOpen : ''}`}
+            className={isMobileMenuOpen ? `${styles.mobileMenuBtn} ${styles.mobileMenuBtnOpen}` : styles.mobileMenuBtn}
             onClick={toggleMobileMenu}
           >
             <span></span>
@@ -163,8 +128,7 @@ export default function Home() {
         </div>
       </section>
 
-            {/* About Section */}
-      <section id="about" className={`${styles.section} ${styles.scrollAnimation}`} ref={aboutRef}>
+      <section id="about" className={styles.section}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>About Me</h2>
@@ -196,8 +160,7 @@ export default function Home() {
         </div>
       </section>
 
-            {/* Skills Section */}
-      <section id="skills" className={`${styles.section} ${styles.scrollAnimation}`} ref={skillsRef}>
+      <section id="skills" className={styles.section}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Skills & Technologies</h2>
@@ -242,8 +205,7 @@ export default function Home() {
         </div>
       </section>
 
-            {/* Projects Section */}
-      <section id="projects" className={`${styles.section} ${styles.scrollAnimation}`} ref={projectsRef}>
+      <section id="projects" className={styles.section}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Featured Projects</h2>
@@ -319,8 +281,7 @@ export default function Home() {
         </div>
       </section>
 
-            {/* Experience Section */}
-      <section id="experience" className={`${styles.section} ${styles.scrollAnimation}`} ref={experienceRef}>
+      <section id="experience" className={styles.section}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Experience</h2>
@@ -395,7 +356,7 @@ export default function Home() {
       </section>
 
       {/* Certificates Section */}
-      <section id="certificates" className={`${styles.section} ${styles.scrollAnimation}`} ref={certificatesRef}>
+      <section id="certificates" className={styles.section}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Certificates</h2>
@@ -464,8 +425,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className={`${styles.section} ${styles.scrollAnimation}`} ref={contactRef}>
+      <section id="contact" className={styles.section}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>Let&apos;s Connect</h2>
@@ -497,9 +457,9 @@ export default function Home() {
               <p>&copy; 2025 Achraf Khoualdi. All rights reserved.</p>
             </div>
             <div className={styles.socialLinks}>
-              <a href="https://github.com/achrafkh5" className={styles.socialLink}>GitHub</a>
-              <a href="https://www.linkedin.com/in/achraf-khoualdi-bab640364/" className={styles.socialLink}>LinkedIn</a>
-              <a href="https://www.instagram.com/_achraf_kh__/" className={styles.socialLink}>Instagram</a>
+              <a href="#" className={styles.socialLink}>GitHub</a>
+              <a href="#" className={styles.socialLink}>LinkedIn</a>
+              <a href="#" className={styles.socialLink}>Twitter</a>
             </div>
           </div>
         </div>
