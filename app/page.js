@@ -173,8 +173,8 @@ export default function Home() {
           <div className={styles.aboutContent}>
             <div className={styles.aboutText}>
               <p className={styles.aboutDescription}>
-                I&apos;m a passionate Full Stack Developer and aspiring Cybersecurity Engineer with expertise in 
-                modern web technologies. I love creating digital solutions that make a difference and have 
+                I&apos;m a Full Stack Developer and aspiring Cybersecurity Engineer with expertise in 
+                modern web technologies. I create digital solutions that make a difference and have 
                 a strong foundation in both frontend and backend development.
               </p>
               <div className={styles.aboutStats}>
