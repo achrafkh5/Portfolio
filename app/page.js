@@ -40,6 +40,39 @@ export default function Home() {
 
     return () => observer.disconnect();
   }, []);
+
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    setSuccess(false);
+
+    try {
+      const res = await fetch("https://formspree.io/f/mvgwgoge", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) throw new Error("Failed to send message");
+
+      setSuccess(true);
+      setForm({ name: "", email: "", message: "" }); // reset
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
   
   const certificates = [
     {
@@ -204,38 +237,98 @@ export default function Home() {
             <div className={styles.sectionLine}></div>
           </div>
           <div className={styles.skillsGrid}>
-            <div className={styles.skillCategory}>
+            <div className={`${styles.skillCategory} ${styles.frontendCategory}`}>
+              <div className={styles.categoryIcon}>🎨</div>
               <h3 className={styles.skillCategoryTitle}>Frontend</h3>
               <div className={styles.skillsList}>
-                <span className={styles.skillTag}>React</span>
-                <span className={styles.skillTag}>Next.js</span>
-                <span className={styles.skillTag}>JavaScript</span>
-                <span className={styles.skillTag}>TypeScript</span>
-                <span className={styles.skillTag}>HTML5</span>
-                <span className={styles.skillTag}>CSS3</span>
-                <span className={styles.skillTag}>Tailwind CSS</span>
+                <div className={`${styles.skillTag} ${styles.reactSkill}`}>
+                  <span className={styles.skillIcon}>⚛️</span>
+                  <span>React</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.nextjsSkill}`}>
+                  <span className={styles.skillIcon}>🔺</span>
+                  <span>Next.js</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.jsSkill}`}>
+                  <span className={styles.skillIcon}>🟨</span>
+                  <span>JavaScript</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.tsSkill}`}>
+                  <span className={styles.skillIcon}>🔷</span>
+                  <span>TypeScript</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.htmlSkill}`}>
+                  <span className={styles.skillIcon}>🟧</span>
+                  <span>HTML5</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.cssSkill}`}>
+                  <span className={styles.skillIcon}>🎨</span>
+                  <span>CSS3</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.tailwindSkill}`}>
+                  <span className={styles.skillIcon}>💨</span>
+                  <span>Tailwind CSS</span>
+                </div>
               </div>
             </div>
-            <div className={styles.skillCategory}>
+            <div className={`${styles.skillCategory} ${styles.backendCategory}`}>
+              <div className={styles.categoryIcon}>⚙️</div>
               <h3 className={styles.skillCategoryTitle}>Backend</h3>
               <div className={styles.skillsList}>
-                <span className={styles.skillTag}>Node.js</span>
-                <span className={styles.skillTag}>Express.js</span>
-                <span className={styles.skillTag}>Python</span>
-                <span className={styles.skillTag}>MongoDB</span>
-                <span className={styles.skillTag}>Supabase</span>
-                <span className={styles.skillTag}>REST APIs</span>
+                <div className={`${styles.skillTag} ${styles.nodeSkill}`}>
+                  <span className={styles.skillIcon}>🟢</span>
+                  <span>Node.js</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.expressSkill}`}>
+                  <span className={styles.skillIcon}>🚂</span>
+                  <span>Express.js</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.pythonSkill}`}>
+                  <span className={styles.skillIcon}>🐍</span>
+                  <span>Python</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.mongoSkill}`}>
+                  <span className={styles.skillIcon}>🍃</span>
+                  <span>MongoDB</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.supabaseSkill}`}>
+                  <span className={styles.skillIcon}>⚡</span>
+                  <span>Supabase</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.apiSkill}`}>
+                  <span className={styles.skillIcon}>🔗</span>
+                  <span>REST APIs</span>
+                </div>
               </div>
             </div>
-            <div className={styles.skillCategory}>
+            <div className={`${styles.skillCategory} ${styles.toolsCategory}`}>
+              <div className={styles.categoryIcon}>🛠️</div>
               <h3 className={styles.skillCategoryTitle}>Tools & Others</h3>
               <div className={styles.skillsList}>
-                <span className={styles.skillTag}>Git/GitHub</span>
-                <span className={styles.skillTag}>Docker</span>
-                <span className={styles.skillTag}>Vercel</span>
-                <span className={styles.skillTag}>Cloudinary</span>
-                <span className={styles.skillTag}>Webpack</span>
-                <span className={styles.skillTag}>Cybersecurity</span>
+                <div className={`${styles.skillTag} ${styles.gitSkill}`}>
+                  <span className={styles.skillIcon}>🐙</span>
+                  <span>Git/GitHub</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.dockerSkill}`}>
+                  <span className={styles.skillIcon}>🐳</span>
+                  <span>Docker</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.vercelSkill}`}>
+                  <span className={styles.skillIcon}>▲</span>
+                  <span>Vercel</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.cloudinarySkill}`}>
+                  <span className={styles.skillIcon}>☁️</span>
+                  <span>Cloudinary</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.webpackSkill}`}>
+                  <span className={styles.skillIcon}>📦</span>
+                  <span>Webpack</span>
+                </div>
+                <div className={`${styles.skillTag} ${styles.securitySkill}`}>
+                  <span className={styles.skillIcon}>🔒</span>
+                  <span>Cybersecurity</span>
+                </div>
               </div>
             </div>
           </div>
@@ -252,10 +345,26 @@ export default function Home() {
           <div className={styles.projectsGrid}>
             <div className={styles.projectCard}>
               <div className={styles.projectImage}>
+                <div className={styles.livePreview}>
+                  <iframe
+                    src="https://mk-exports.vercel.app/"
+                    title="MK Exports Live Preview"
+                    className={styles.websiteIframe}
+                    loading="lazy"
+                  />
+                  <div className={styles.iframeOverlay}>
+                    <div className={styles.browserHeader}>
+                      <div className={styles.browserDots}>
+                        <span></span><span></span><span></span>
+                      </div>
+                      <div className={styles.browserUrl}>mk-exports.vercel.app</div>
+                    </div>
+                  </div>
+                </div>
                 <div className={styles.projectOverlay}>
                   <div className={styles.projectLinks}>
-                    <a href="#" className={styles.projectLink}>Live Demo</a>
-                    <a href="#" className={styles.projectLink}>Code</a>
+                    <a href="https://mk-exports.vercel.app/" className={styles.projectLink} target="_blank" rel="noopener noreferrer">Live Demo</a>
+                    <a href="https://github.com/achrafkh5/mk-exports" className={styles.projectLink} target="_blank" rel="noopener noreferrer">Code</a>
                   </div>
                 </div>
               </div>
@@ -274,10 +383,26 @@ export default function Home() {
             
             <div className={styles.projectCard}>
               <div className={styles.projectImage}>
+                <div className={styles.livePreview}>
+                  <iframe
+                    src="https://bayti-p.vercel.app/"
+                    title="Bayti Live Preview"
+                    className={styles.websiteIframe}
+                    loading="lazy"
+                  />
+                  <div className={styles.iframeOverlay}>
+                    <div className={styles.browserHeader}>
+                      <div className={styles.browserDots}>
+                        <span></span><span></span><span></span>
+                      </div>
+                      <div className={styles.browserUrl}>bayti-p.vercel.app</div>
+                    </div>
+                  </div>
+                </div>
                 <div className={styles.projectOverlay}>
                   <div className={styles.projectLinks}>
-                    <a href="#" className={styles.projectLink}>Live Demo</a>
-                    <a href="#" className={styles.projectLink}>Code</a>
+                    <a href="https://bayti-p.vercel.app/" className={styles.projectLink} target="_blank" rel="noopener noreferrer">Live Demo</a>
+                    <a href="https://github.com/achrafkhl/bayti" className={styles.projectLink} target="_blank" rel="noopener noreferrer">Code</a>
                   </div>
                 </div>
               </div>
@@ -296,10 +421,26 @@ export default function Home() {
             
             <div className={styles.projectCard}>
               <div className={styles.projectImage}>
+                <div className={styles.livePreview}>
+                  <iframe
+                    src="https://quick-menu.vercel.app/"
+                    title="QuickMenu Live Preview"
+                    className={styles.websiteIframe}
+                    loading="lazy"
+                  />
+                  <div className={styles.iframeOverlay}>
+                    <div className={styles.browserHeader}>
+                      <div className={styles.browserDots}>
+                        <span></span><span></span><span></span>
+                      </div>
+                      <div className={styles.browserUrl}>quick-menu.vercel.app</div>
+                    </div>
+                  </div>
+                </div>
                 <div className={styles.projectOverlay}>
                   <div className={styles.projectLinks}>
-                    <a href="#" className={styles.projectLink}>Live Demo</a>
-                    <a href="#" className={styles.projectLink}>Code</a>
+                    <a href="https://quick-menu.vercel.app/" className={styles.projectLink} target="_blank" rel="noopener noreferrer">Live Demo</a>
+                    <a href="https://github.com/achrafkh5/QuickMenu" className={styles.projectLink} target="_blank" rel="noopener noreferrer">Code</a>
                   </div>
                 </div>
               </div>
@@ -477,13 +618,52 @@ export default function Home() {
               <p>I&apos;m always interested in new opportunities and exciting projects. Let&apos;s discuss how we can work together!</p>
             </div>
             <div className={styles.contactForm}>
-              <form className={styles.form}>
+              <form className={styles.form} onSubmit={handleSubmit}>
+                {success && (
+                  <div className={styles.successMessage}>
+                    ✅ Thank you! Your message has been sent successfully.
+                  </div>
+                )}
+                {error && (
+                  <div className={styles.errorMessage}>
+                    ❌ {error}
+                  </div>
+                )}
                 <div className={styles.formGroup}>
-                  <input type="text" placeholder="Your Name" className={styles.formInput} />
-                  <input type="email" placeholder="Your Email" className={styles.formInput} />
+                  <input 
+                    type="text" 
+                    name="name"
+                    placeholder="Your Name" 
+                    className={styles.formInput}
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input 
+                    type="email" 
+                    name="email"
+                    placeholder="Your Email" 
+                    className={styles.formInput}
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
-                <textarea placeholder="Your Message" className={styles.formTextarea}></textarea>
-                <button type="submit" className={styles.formButton}>Send Message</button>
+                <textarea 
+                  name="message"
+                  placeholder="Your Message" 
+                  className={styles.formTextarea}
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                ></textarea>
+                <button 
+                  type="submit" 
+                  className={styles.formButton}
+                  disabled={loading}
+                >
+                  {loading ? "Sending..." : "Send Message"}
+                </button>
               </form>
             </div>
           </div>

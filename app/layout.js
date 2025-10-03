@@ -15,7 +15,7 @@ export const metadata = {
   title: "Achraf's Portfolio",
   description: "Achraf Khoualdi's personal portfolio showcasing projects and skills.",
   keywords: ["portfolio", "web development", "Achraf Khoualdi"],
-  authors: [{ name: "Achraf Khoualdi", url: "https://achrafkhoualdi.com" }],
+  authors: [{ name: "Achraf Khoualdi", url: "https://achraf-khoualdi-portfolio.vercel.app" }],
   openGraph: {
     title: "Achraf's Portfolio",
     description: "Achraf Khoualdi's personal portfolio showcasing projects and skills.",
