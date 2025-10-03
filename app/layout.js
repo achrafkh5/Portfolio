@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import FontAwesomeScript from "./FontAwesomeScript";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -65,8 +65,16 @@ export function MyApp({ Component, pageProps }) {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* Devicon stylesheet */}
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
+        <FontAwesomeScript />
       </body>
     </html>
   );

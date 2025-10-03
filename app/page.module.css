@@ -718,7 +718,7 @@
 }
 
 .projectCard {
-  background: var(--bg-primary);
+  background: #182544;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: var(--shadow-md);
@@ -1105,6 +1105,7 @@
   border-radius: 15px;
   overflow: hidden;
   box-shadow: var(--shadow-lg);
+  background: #182544;
 }
 
 .certificateSlide.active {
@@ -1128,7 +1129,6 @@
 }
 
 .certificateImageContainer {
-  background: var(--bg-primary);
   padding: 1rem;
   border-radius: 15px;
 }
@@ -1158,7 +1158,6 @@
   color: var(--text-primary);
   font-weight: 600;
   font-size: 1.1rem;
-  background: var(--bg-primary);
   margin: 0;
 }
 

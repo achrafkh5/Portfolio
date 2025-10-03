@@ -2,7 +2,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useState, useEffect, useRef } from "react";
-
+import { SiNextdotjs,SiTypescript } from "react-icons/si";
 export default function Home() {
   const [currentCertificate, setCurrentCertificate] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -242,31 +242,31 @@ export default function Home() {
               <h3 className={styles.skillCategoryTitle}>Frontend</h3>
               <div className={styles.skillsList}>
                 <div className={`${styles.skillTag} ${styles.reactSkill}`}>
-                  <span className={styles.skillIcon}>⚛️</span>
+                  <span className={styles.skillIcon}><i className="fab fa-react"></i></span>
                   <span>React</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.nextjsSkill}`}>
-                  <span className={styles.skillIcon}>🔺</span>
+                  <span className={styles.skillIcon}><SiNextdotjs /></span>
                   <span>Next.js</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.jsSkill}`}>
-                  <span className={styles.skillIcon}>🟨</span>
+                  <span className={styles.skillIcon}><i className="fab fa-js"></i></span>
                   <span>JavaScript</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.tsSkill}`}>
-                  <span className={styles.skillIcon}>🔷</span>
+                  <span className={styles.skillIcon}><SiTypescript /></span>
                   <span>TypeScript</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.htmlSkill}`}>
-                  <span className={styles.skillIcon}>🟧</span>
+                  <span className={styles.skillIcon}><i className="fab fa-html5"></i></span>
                   <span>HTML5</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.cssSkill}`}>
-                  <span className={styles.skillIcon}>🎨</span>
+                  <span className={styles.skillIcon}><i className="fab fa-css3-alt"></i></span>
                   <span>CSS3</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.tailwindSkill}`}>
-                  <span className={styles.skillIcon}>💨</span>
+                  <span className={styles.skillIcon}><i className="devicon-tailwindcss-plain"></i></span>
                   <span>Tailwind CSS</span>
                 </div>
               </div>
@@ -276,19 +276,19 @@ export default function Home() {
               <h3 className={styles.skillCategoryTitle}>Backend</h3>
               <div className={styles.skillsList}>
                 <div className={`${styles.skillTag} ${styles.nodeSkill}`}>
-                  <span className={styles.skillIcon}>🟢</span>
+                  <span className={styles.skillIcon}><i className="fab fa-node-js"></i></span>
                   <span>Node.js</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.expressSkill}`}>
-                  <span className={styles.skillIcon}>🚂</span>
+                  <span className={styles.skillIcon}><i className="devicon-express-original"></i></span>
                   <span>Express.js</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.pythonSkill}`}>
-                  <span className={styles.skillIcon}>🐍</span>
+                  <span className={styles.skillIcon}><i className="fab fa-python"></i></span>
                   <span>Python</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.mongoSkill}`}>
-                  <span className={styles.skillIcon}>🍃</span>
+                  <span className={styles.skillIcon}><i className="devicon-mongodb-plain"></i></span>
                   <span>MongoDB</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.supabaseSkill}`}>
@@ -296,7 +296,7 @@ export default function Home() {
                   <span>Supabase</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.apiSkill}`}>
-                  <span className={styles.skillIcon}>🔗</span>
+                  <span className={styles.skillIcon}><i className="fas fa-network-wired"></i></span>
                   <span>REST APIs</span>
                 </div>
               </div>
@@ -306,15 +306,15 @@ export default function Home() {
               <h3 className={styles.skillCategoryTitle}>Tools & Others</h3>
               <div className={styles.skillsList}>
                 <div className={`${styles.skillTag} ${styles.gitSkill}`}>
-                  <span className={styles.skillIcon}>🐙</span>
+                  <span className={styles.skillIcon}><i className="fab fa-github"></i></span>
                   <span>Git/GitHub</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.dockerSkill}`}>
-                  <span className={styles.skillIcon}>🐳</span>
+                  <span className={styles.skillIcon}><i className="fab fa-docker"></i></span>
                   <span>Docker</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.vercelSkill}`}>
-                  <span className={styles.skillIcon}>▲</span>
+                  <span className={styles.skillIcon}><i className="devicon-vercel-original"></i></span>
                   <span>Vercel</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.cloudinarySkill}`}>
@@ -322,7 +322,7 @@ export default function Home() {
                   <span>Cloudinary</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.webpackSkill}`}>
-                  <span className={styles.skillIcon}>📦</span>
+                  <span className={styles.skillIcon}><i className="devicon-webpack-plain"></i></span>
                   <span>Webpack</span>
                 </div>
                 <div className={`${styles.skillTag} ${styles.securitySkill}`}>
