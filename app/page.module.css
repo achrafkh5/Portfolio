@@ -155,6 +155,7 @@
   position: relative;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   overflow: hidden;
+  padding-top: 80px; /* Add padding to clear fixed navigation */
 }
 
 .hero::before {
@@ -1392,10 +1393,36 @@
     grid-template-columns: 1fr;
     text-align: center;
     gap: 2rem;
+    padding: 2rem 1rem; /* Add padding for mobile */
+    max-width: 100%;
+  }
+  
+  .heroText {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .greeting {
+    font-size: 1rem;
   }
   
   .name {
     font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  .profession {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroDescription {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 100%;
+    padding: 0 0.5rem;
   }
   
   .heroButtons {
@@ -1509,6 +1536,15 @@
 }
 
 @media (max-width: 480px) {
+  .hero {
+    padding-top: 100px; /* Extra padding for very small screens */
+    min-height: calc(100vh - 20px);
+  }
+  
+  .heroContent {
+    padding: 1.5rem 0.5rem;
+  }
+  
   .section {
     padding: 3rem 0;
   }
@@ -1517,18 +1553,36 @@
     font-size: 2rem;
   }
   
+  .greeting {
+    font-size: 0.9rem;
+  }
+  
   .name {
     font-size: 2rem;
+    line-height: 1.1;
+  }
+  
+  .profession {
+    font-size: 1rem;
+  }
+  
+  .heroDescription {
+    font-size: 0.9rem;
+    padding: 0;
   }
   
   .heroButtons {
     flex-direction: column;
     align-items: center;
+    gap: 0.75rem;
+    width: 100%;
   }
   
   .primaryBtn, .secondaryBtn {
     width: 100%;
+    max-width: 280px;
     text-align: center;
+    padding: 1rem 1.5rem;
   }
 }
 
