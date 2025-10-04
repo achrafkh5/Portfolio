@@ -414,7 +414,7 @@
 .stat {
   text-align: center;
   padding: 2rem 1rem;
-  background: var(--bg-primary);
+  background: #182544;
   border-radius: 20px;
   box-shadow: var(--shadow-md);
   transition: transform 0.3s ease;
@@ -974,7 +974,7 @@
 
 .projectTech span {
   padding: 0.25rem 0.75rem;
-  background: var(--bg-secondary);
+  background: var(--bg-dark);
   color: var(--text-secondary);
   border-radius: 15px;
   font-size: 0.8rem;
