@@ -147,6 +147,7 @@ export default function Home() {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+  const experience = new Date().getFullYear() - 2023;
   return (
    
     <div className={styles.container}>
@@ -237,7 +238,7 @@ export default function Home() {
                   <span className={styles.statLabel}>Projects Completed</span>
                 </div>
                 <div className={styles.stat}>
-                  <span className={styles.statNumber}>2</span>
+                  <span className={styles.statNumber}>{experience}+</span>
                   <span className={styles.statLabel}>Years Experience</span>
                 </div>
                 <div className={styles.stat}>
